@@ -1,4 +1,5 @@
 import subprocess
+import sys
 
 import httpx
 
@@ -13,7 +14,8 @@ client.headers.update(main_headers)
 while True:
     main_response = client.get(main_url)
     if main_response.status_code not in [200, 302]:
-        break
+        print(main_response.status_code)
+        sys.exit()
     if '__ac_nonce' in main_response.cookies.keys():
         break
     main_url = main_response.headers["Location"]
@@ -29,3 +31,4 @@ client.cookies.update({
 })
 main_response = client.get(main_url)
 print(main_response.cookies)
+print(client.cookies)

@@ -26,7 +26,6 @@ function getAcSignature(url, ac_nonce, ua) {
     let acSignature = "_02B4Z6wo00f01";  // Fixed beginning
 
     let nowTime = Math.floor(Date.now() / 1000).toString();
-    nowTime = '1727412787';
     let timeNum = initNumCalc(nowTime);
     let urlNum = initNumCalc(url, timeNum);
     let binaryNum = ((nowTime ^ (urlNum % 65521 * 65521)) >>> 0).toString(2);
