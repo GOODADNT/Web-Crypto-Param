@@ -230,14 +230,13 @@ function randomStrA() {
 
 function randomNum(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
-
 }
 
 function randomArray(params_suffix, suffix, user_agent, pageId, aid) {
     let resultArray = [];
     resultArray.push(41);
     const nowTime = Date.now();
-    resultArray.push((1728997317126 - 1721836800000) / 1000 / 60 / 60 / 24 / 14 >> 0);
+    resultArray.push((nowTime - 1721836800000) / 1000 / 60 / 60 / 24 / 14 >> 0);
     resultArray.push(6);
     const aTime = nowTime - randomNum(3000, 5000);
     resultArray.push(randomNum(70, 100) + 3);
@@ -361,10 +360,10 @@ function randomStrC(urlParams, suffix, userAgent, pageId, aid) {
     return strCa + strCb + strCc;
 }
 
-function randomStr(url_params, suffix, user_agent){
+function randomStr(url_params, suffix, user_agent, pageId, aid){
     let resultStr = '';
     resultStr += randomStrA();
-    resultStr += rc4Encrypt(randomStrC(url_params, suffix, user_agent), String.fromCharCode(211));
+    resultStr += rc4Encrypt(randomStrC(url_params, suffix, user_agent, pageId, aid), String.fromCharCode(211));
     resultStr = calcBase64(resultStr, 's4');
     return resultStr;
 }
